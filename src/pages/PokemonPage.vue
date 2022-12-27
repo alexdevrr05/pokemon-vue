@@ -1,8 +1,17 @@
 <template>
-    <div>
+
+    <h1 v-if="!currentPokemon">Loading...</h1>
+
+    <div v-else>
         <h1>¿Quién es este pokemon?</h1>
-        <PokemonPictureVue :pokemonID="60" :showPokemon="false" />
-        <PokemonOptionsVue :pokemonOptions="pokemonOptions" />
+        <PokemonPictureVue 
+            :pokemonID="currentPokemon.id"
+            :showPokemon="showPokemon"
+        />
+        <PokemonOptionsVue 
+            :pokemonOptions="pokemonOptions" 
+            @handleClickPokemonOption="handleClickPokemonOption"
+        />
     </div>
 </template>
 
@@ -22,11 +31,20 @@ export default {
     data() {
         return {
             pokemonOptions: [],
+            showPokemon: false,
+            currentPokemon: null,
         }
     },
     methods: {
         async mixPokemonArray() {
             this.pokemonOptions = await getPokemonsOptions();
+            // we require a number between zero and three
+            const rndInt = Math.floor(Math.random() * 4);
+            this.currentPokemon = this.pokemonOptions[ rndInt ];
+        },
+        handleClickPokemonOption() {
+            console.log('HELLLO WORLD');
+            this.showPokemon = true;
         },
     },
     mounted() {
