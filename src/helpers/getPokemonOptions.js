@@ -15,14 +15,22 @@ const getPokemonsOptions = async () => {
 
 // Destructuring to have independent variables [a, b, c, d...]
 const getPokemonsNames = async ([a, b, c, d] = []) => {
-  const pokemonNamesResps = await Promise.all([
+
+  const pokemonRequestsArray = [
     pokeApi.get(`/${a}`),
     pokeApi.get(`/${b}`),
     pokeApi.get(`/${c}`),
     pokeApi.get(`/${d}`),
-  ]);
+  ];
 
-  return pokemonNamesResps.map((pokemon) => pokemon.data.name);
+  const [r1, r2, r3, r4] = await Promise.all(pokemonRequestsArray);
+
+  return [
+    { name: r1.data.name, id: r1.data.id },
+    { name: r2.data.name, id: r2.data.id },
+    { name: r3.data.name, id: r3.data.id },
+    { name: r4.data.name, id: r4.data.id },
+  ];
 };
 
 export default getPokemonsOptions;

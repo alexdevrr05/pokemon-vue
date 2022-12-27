@@ -2,7 +2,7 @@
     <div>
         <h1>¿Quién es este pokemon?</h1>
         <PokemonPictureVue :pokemonID="60" :showPokemon="false" />
-        <PokemonOptionsVue />
+        <PokemonOptionsVue :pokemonOptions="pokemonArr" />
     </div>
 </template>
 
