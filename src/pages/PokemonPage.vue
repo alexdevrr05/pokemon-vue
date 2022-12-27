@@ -2,7 +2,7 @@
     <div>
         <h1>¿Quién es este pokemon?</h1>
         <PokemonPictureVue :pokemonID="60" :showPokemon="false" />
-        <PokemonOptionsVue :pokemonOptions="pokemonArr" />
+        <PokemonOptionsVue :pokemonOptions="pokemonOptions" />
     </div>
 </template>
 
@@ -21,12 +21,12 @@ export default {
     },
     data() {
         return {
-            pokemonArr: [],
+            pokemonOptions: [],
         }
     },
     methods: {
         async mixPokemonArray() {
-            this.pokemonArr = await getPokemonsOptions();
+            this.pokemonOptions = await getPokemonsOptions();
         },
     },
     mounted() {
