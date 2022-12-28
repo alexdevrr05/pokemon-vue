@@ -1,23 +1,30 @@
 <template>
   <div class="options-container">
     <ul id="example">
-      <li 
-        v-for="pokemon in pokemonOptions" 
+      <li
+        v-for="pokemon in pokemonOptions"
         :key="pokemon.id"
-        @click="$emit('handleClickPokemonOption')"
+        @click="$emit('handleClickPokemonOption', pokemon.id)"
       >
-        {{ pokemon.name }}
+        {{ capitalizePokemonName(pokemon.name) }}
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import capitalizeFirstLetter from '@/helpers/capitalizeFirstLetter';
+
 export default {
   props: {
     pokemonOptions: {
       type: Array,
       required: true,
+    },
+  },
+  methods: {
+    capitalizePokemonName(pokemonName) {
+      return capitalizeFirstLetter(pokemonName);
     },
   },
 };
