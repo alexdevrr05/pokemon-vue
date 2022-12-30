@@ -1,6 +1,6 @@
 import pokeApi from '@/api/pokeApi';
 
-const getPokemons = () => {
+export const getPokemons = () => {
   const pokemonsArr = Array.from(Array(650));
 
   return pokemonsArr.map((_, index) => index + 1);
@@ -14,8 +14,7 @@ const getPokemonsOptions = async () => {
 };
 
 // Destructuring to have independent variables [a, b, c, d...]
-const getPokemonsNames = async ([a, b, c, d] = []) => {
-
+export const getPokemonsNames = async ([a, b, c, d] = []) => {
   const pokemonRequestsArray = [
     pokeApi.get(`/${a}`),
     pokeApi.get(`/${b}`),
