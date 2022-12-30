@@ -1,4 +1,7 @@
-import { getPokemons, getPokemonsNames } from '@/helpers/getPokemonOptions';
+import getPokemonsOptions, {
+  getPokemons,
+  getPokemonsNames,
+} from '@/helpers/getPokemonOptions';
 
 describe('getPokemonOptions helpers', () => {
   test('Debe de retornar un arreglo de números', () => {
@@ -21,5 +24,28 @@ describe('getPokemonOptions helpers', () => {
     ]);
   });
 
-  test('getPokemonsOptions debe de retornar un array mezclado', async () => {});
+  test('getPokemonsOptions debe de retornar un array mezclado', async () => {
+    const pokemonOptions = await getPokemonsOptions();
+
+    expect(pokemonOptions.length).toBe(4);
+    // randoms pokemons names and id's
+    expect(pokemonOptions).toEqual([
+      {
+        name: expect.any(String),
+        id: expect.any(Number),
+      },
+      {
+        name: expect.any(String),
+        id: expect.any(Number),
+      },
+      {
+        name: expect.any(String),
+        id: expect.any(Number),
+      },
+      {
+        name: expect.any(String),
+        id: expect.any(Number),
+      },
+    ]);
+  });
 });
