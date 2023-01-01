@@ -1,21 +1,22 @@
 import pokeApi from '@/api/pokeApi';
 
-const getPokemons = () => {
+export const getPokemons = () => {
   const pokemonsArr = Array.from(Array(650));
 
   return pokemonsArr.map((_, index) => index + 1);
 };
 
 const getPokemonsOptions = async () => {
+  // Mezcla las posición de los arreglos
   const mixedPokemons = getPokemons().sort(() => Math.random() - 0.5);
 
+  // Obtiene las primeras 4 posiciones
   const pokemons = await getPokemonsNames(mixedPokemons.splice(0, 4));
   return pokemons;
 };
 
 // Destructuring to have independent variables [a, b, c, d...]
-const getPokemonsNames = async ([a, b, c, d] = []) => {
-
+export const getPokemonsNames = async ([a, b, c, d] = []) => {
   const pokemonRequestsArray = [
     pokeApi.get(`/${a}`),
     pokeApi.get(`/${b}`),
